@@ -14,7 +14,7 @@ contract DeployMerkleAirdrop is Script {
         vm.startBroadcast();
         BagelToken token = new BagelToken();
         MerkleAirdrop airdrop = new MerkleAirdrop(s_merkleRoot, IERC20(address(token)));
-        token.mint(token.owner(), s_amountToTransfer);
+        token.mint(token.owner(), s_amountToTransfer); // mint the deployer
         token.transfer(address(airdrop), s_amountToTransfer);
         vm.stopBroadcast();
         return (airdrop, token);
